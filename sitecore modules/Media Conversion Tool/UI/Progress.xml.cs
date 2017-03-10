@@ -73,7 +73,7 @@ namespace Sitecore.Modules.MediaConversionTool.UI
             {
                 progress = 100;
                 string part = (total == 1) ? " was" : "s were";
-                message = string.Format("Convestion finished<br/>{0} version{1} processed", total, part);
+                message = string.Format("Conversion finished<br/>{0} version{1} processed", total, part);
             }
             else
             {
