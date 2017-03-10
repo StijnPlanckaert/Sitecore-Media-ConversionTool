@@ -1,9 +1,9 @@
 ﻿namespace Sitecore.Modules.MediaConversionTool.Pipelines.ConvertMediaItem
 {
-   using Sitecore.Data.Items;
-   using Sitecore.Diagnostics;
-   using Sitecore.Modules.MediaConversionTool.Configuration;
-   using Sitecore.StringExtensions;
+   using Data.Items;
+   using Diagnostics;
+   using Configuration;
+   using StringExtensions;
 
    /// <summary>
    /// Evaluates whether a media should be converted.
@@ -23,10 +23,10 @@
          switch (context.MediaContext.Options.ConversionType)
          {
             case ConversionType.Blob:
-               skipProcessing = this.SkipBlobConversion(context, ref message);
+               skipProcessing = SkipBlobConversion(context, ref message);
                break;
             case ConversionType.File:
-               skipProcessing = this.SkipFileConversion(context, ref message);
+               skipProcessing = SkipFileConversion(context, ref message);
                break;
          }
 

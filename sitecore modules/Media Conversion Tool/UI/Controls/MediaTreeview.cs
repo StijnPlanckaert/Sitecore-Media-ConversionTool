@@ -11,7 +11,7 @@ using LiteralControl = System.Web.UI.LiteralControl;
 
 namespace Sitecore.Modules.MediaConversionTool.Controls
 {
-   using Sitecore.Modules.MediaConversionTool.Utils;
+   using Utils;
 
    public class MediaTreeview: DataTreeview
    {

@@ -2,7 +2,7 @@
 {
    using System.Linq;
 
-   using Sitecore.Diagnostics;
+   using Diagnostics;
 
    public class AddMediaItemsToQueue : ConvertMediaProcessor
    {

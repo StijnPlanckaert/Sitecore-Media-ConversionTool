@@ -1,12 +1,12 @@
 ﻿namespace Sitecore.Modules.MediaConversionTool.Pipelines.ConvertMediaItem
 {
-   using Sitecore.Data.Items;
-   using Sitecore.Diagnostics;
-   using Sitecore.Jobs;
-   using Sitecore.Modules.MediaConversionTool.Pipelines.ConvertMedia;
-   using Sitecore.Modules.MediaConversionTool.Utils;
+   using Data.Items;
+   using Diagnostics;
+   using Jobs;
+   using Pipelines.ConvertMedia;
+   using Utils;
    using Sitecore.Pipelines;
-   using Sitecore.Security.Accounts;
+   using Security.Accounts;
 
    public class ConvertMediaItemContext : PipelineArgs
    {
@@ -15,16 +15,16 @@
          Assert.ArgumentNotNull(candidate, "candidate");
          Assert.ArgumentNotNull(convertMediaContext, "mediaContext");
 
-         this.Job = convertMediaContext.Job;
-         this.User = convertMediaContext.User;
-         this.MediaContext = convertMediaContext;
-         this.ConversionOptions = convertMediaContext.Options;
-         this.Item = Utils.GetItem(candidate.Uri);
+         Job = convertMediaContext.Job;
+         User = convertMediaContext.User;
+         MediaContext = convertMediaContext;
+         ConversionOptions = convertMediaContext.Options;
+         Item = Utils.GetItem(candidate.Uri);
       }
 
       public virtual void AbortPipeline(ConversionAction action, string message)
       {
-         this.Result = new ConvertMediaItemResult(action, message);
+         Result = new ConvertMediaItemResult(action, message);
          base.AbortPipeline();
       }
 

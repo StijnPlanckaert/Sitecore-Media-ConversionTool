@@ -2,12 +2,12 @@
 {
    using System;
    using System.IO;
-   using Sitecore.Data.Items;
-   using Sitecore.Diagnostics;
-   using Sitecore.IO;
-   using Sitecore.Modules.MediaConversionTool.Configuration;
-   using Sitecore.Resources.Media;
-   using Sitecore.StringExtensions;
+   using Data.Items;
+   using Diagnostics;
+   using IO;
+   using Configuration;
+   using Resources.Media;
+   using StringExtensions;
 
    public class ConvertMedia : ConvertMediaItemProcessor
    {
@@ -18,7 +18,7 @@
       public override void Process(ConvertMediaItemContext context)
       {
          Assert.ArgumentNotNull(context, "context");
-         this.ChangeMediaStorage(context);
+         ChangeMediaStorage(context);
       }
 
       protected virtual void ChangeMediaStorage(ConvertMediaItemContext context)
@@ -26,10 +26,10 @@
          switch (context.MediaContext.Options.ConversionType)
          {
             case ConversionType.Blob:
-               this.ChangeToDatabase(context);
+               ChangeToDatabase(context);
                break;
             case ConversionType.File:
-               this.ChangeToFile(context);
+               ChangeToFile(context);
                break;
          }
       }
@@ -51,12 +51,12 @@
          string filePath = GetFilePath(mediaItem);
          try
          {
-            bool fileExists = this.FileExists(ref filePath, memoryStream);
+            bool fileExists = FileExists(ref filePath, memoryStream);
             if (!fileExists)
             {
                SaveToFile(memoryStream, filePath);
             }
-            this.SetFilePath(mediaItem, filePath);
+            SetFilePath(mediaItem, filePath);
             context.CleanupReference = blobField.Value;
          }
          catch (Exception exception)

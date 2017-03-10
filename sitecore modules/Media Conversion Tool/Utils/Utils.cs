@@ -2,15 +2,15 @@ namespace Sitecore.Modules.MediaConversionTool.Utils
 {
    using System.Linq;
    using Sitecore.Configuration;
-   using Sitecore.Data;
-   using Sitecore.Data.Fields;
-   using Sitecore.Data.Items;
-   using Sitecore.Diagnostics;
-   using Sitecore.Resources.Media;
-   using Sitecore.Security.AccessControl;
-   using Sitecore.Security.Accounts;
-   using Sitecore.SecurityModel;
-   using Sitecore.StringExtensions;
+   using Data;
+   using Data.Fields;
+   using Data.Items;
+   using Diagnostics;
+   using Resources.Media;
+   using Security.AccessControl;
+   using Security.Accounts;
+   using SecurityModel;
+   using StringExtensions;
 
    internal static class Utils
    {

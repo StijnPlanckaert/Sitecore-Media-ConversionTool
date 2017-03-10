@@ -1,10 +1,10 @@
 ﻿namespace Sitecore.Modules.MediaConversionTool
 {
    using System.Collections.Generic;
-   using Sitecore.Diagnostics;
-   using Sitecore.Jobs;
-   using Sitecore.Modules.MediaConversionTool.Pipelines.ConvertMedia;
-   using Sitecore.Security.Accounts;
+   using Diagnostics;
+   using Jobs;
+   using Pipelines.ConvertMedia;
+   using Security.Accounts;
 
    public class MediaConversionManager
    {
@@ -23,7 +23,7 @@
          ConvertMediaContext context = new ConvertMediaContext(references);
          context.Options = options;
          context.User = user;
-         context.Job = this.GetJob(JobName);
+         context.Job = GetJob(JobName);
          ConvertMediaPipeline.Run(context);
       }
 

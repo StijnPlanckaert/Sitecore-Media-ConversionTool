@@ -1,13 +1,13 @@
 namespace Sitecore.Modules.MediaConversionTool.UI
 {
-    using Sitecore.Globalization;
-    using Sitecore.Web.UI.Sheer;
-    using Sitecore.Web.UI.WebControls;
-    using Sitecore.Web.UI.HtmlControls;
-    using Sitecore.Shell.Framework;
+    using Globalization;
+    using Web.UI.Sheer;
+    using Web.UI.WebControls;
+    using Web.UI.HtmlControls;
+    using Shell.Framework;
 
-    using Sitecore.Modules.MediaConversionTool.Controls;
-    using Sitecore.Jobs;
+    using Controls;
+    using Jobs;
 
     public class Progress : BaseForm
     {
@@ -23,13 +23,13 @@ namespace Sitecore.Modules.MediaConversionTool.UI
         public void RefreshState(Message msg)
         {
             Job job = JobManager.GetJob(JobHandle);
-            this.UpdateProgress(job);
+            UpdateProgress(job);
 
             if (job.IsDone)
             {
-                this.BtnClose.Header = Translate.Text("Close");
-                this.BtnClose.Disabled = false;
-                this.BtnConvertMore.Disabled = false;
+                BtnClose.Header = Translate.Text("Close");
+                BtnClose.Disabled = false;
+                BtnConvertMore.Disabled = false;
             }
             else
             {
@@ -96,7 +96,7 @@ namespace Sitecore.Modules.MediaConversionTool.UI
                 }
             }
 
-            this.brdProgress.InnerHtml = ProgressBar.GetHtml(progress, message);
+            brdProgress.InnerHtml = ProgressBar.GetHtml(progress, message);
         }
 
         private static Handle JobHandle

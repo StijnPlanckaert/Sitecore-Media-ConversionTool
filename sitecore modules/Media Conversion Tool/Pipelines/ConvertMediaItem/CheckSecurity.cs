@@ -1,7 +1,7 @@
 ﻿namespace Sitecore.Modules.MediaConversionTool.Pipelines.ConvertMediaItem
 {
-   using Sitecore.Diagnostics;
-   using Sitecore.Modules.MediaConversionTool.Utils;
+   using Diagnostics;
+   using Utils;
 
    public class CheckSecurity : ConvertMediaItemProcessor
    {

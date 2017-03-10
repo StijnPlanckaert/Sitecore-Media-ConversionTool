@@ -1,8 +1,8 @@
 ﻿namespace Sitecore.Modules.MediaConversionTool.Commands
 {
-   using Sitecore.Diagnostics;
-   using Sitecore.Shell.Framework.Commands;
-   using Sitecore.Text;
+   using Diagnostics;
+   using Shell.Framework.Commands;
+   using Text;
 
    public class OpenMediaConversionTool : Command
    {

@@ -1,16 +1,16 @@
 ﻿namespace Sitecore.Modules.MediaConversionTool.Pipelines.ConvertMedia
 {
    using System.Collections.Generic;
-   using Sitecore.Data;
+   using Data;
 
    public class ConversionCandidate
    {
       public ConversionCandidate(ItemUri uri, bool deep)
       {
-         this.Uri = uri;
-         this.ItemId = uri.ItemID;
-         this.DatabaseName = uri.DatabaseName;
-         this.Deep = deep;
+         Uri = uri;
+         ItemId = uri.ItemID;
+         DatabaseName = uri.DatabaseName;
+         Deep = deep;
       }
 
       public ConversionCandidate(ItemUri uri) : this(uri, false){}
@@ -21,7 +21,7 @@
       {
          get
          {
-            return ConversionQueue.GetChildIterator(this.Uri, this.Deep);
+            return ConversionQueue.GetChildIterator(Uri, Deep);
          }
       }
 

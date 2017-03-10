@@ -31,9 +31,9 @@ namespace Sitecore.Modules.MediaConversionTool.UI
       {
          if (!Context.ClientPage.IsEvent)
          {
-            this.DataContext.GetFromQueryString();
-            this.Databases.Header = Context.ContentDatabase.Name;
-            this.InitializeControls();
+            DataContext.GetFromQueryString();
+            Databases.Header = Context.ContentDatabase.Name;
+            InitializeControls();
          }
          base.OnLoad(e);
       }
@@ -65,18 +65,18 @@ namespace Sitecore.Modules.MediaConversionTool.UI
          Item selectedItem = DataContext.GetFolder();
          if (selectedItem != null && selectedItem.Children.Count == 0)
          {
-            this.AddItem();
+            AddItem();
          }
       }
 
       public void ConvertTargetClick(string controlId)
       {
-         foreach (var button in this.TargetGroup.Controls.OfType<Radiobutton>())
+         foreach (var button in TargetGroup.Controls.OfType<Radiobutton>())
          {
             if (button.ID.Equals(controlId))
             {
                button.Checked = true;
-               this.TargetGroup.Value = button.Value;
+               TargetGroup.Value = button.Value;
             }
             else
             {
@@ -87,18 +87,18 @@ namespace Sitecore.Modules.MediaConversionTool.UI
 
       public void AddItem()
       {
-         this.AddEntry(this.DataContext.GetFolder(), "single", "software/16x16/element.png");
+         AddEntry(DataContext.GetFolder(), "single", "software/16x16/element.png");
       }
 
       public void AddTree()
       {
-         this.AddEntry(this.DataContext.GetFolder(), "recursive", "software/16x16/branch.png");
+         AddEntry(DataContext.GetFolder(), "recursive", "software/16x16/branch.png");
       }
 
       public void Remove(string id)
       {
          ListviewItem[] selectedItems;
-         selectedItems = id.Length == 0 ? this.ItemList.SelectedItems : new ListviewItem[] { Context.ClientPage.FindControl(id) as ListviewItem };
+         selectedItems = id.Length == 0 ? ItemList.SelectedItems : new ListviewItem[] { Context.ClientPage.FindControl(id) as ListviewItem };
 
          foreach (ListviewItem item in selectedItems.Where(item => item != null))
          {
@@ -109,14 +109,14 @@ namespace Sitecore.Modules.MediaConversionTool.UI
 
       protected override void OnOK(object sender, EventArgs args)
       {
-         if (this.ItemList.Items.Length == 0)
+         if (ItemList.Items.Length == 0)
          {
             Context.ClientPage.ClientResponse.Alert(MessageNoItemsSelected);
             return;
          }
 
          List<ConversionReference> itemsToProcess = new List<ConversionReference>();
-         foreach (ListviewItem item in this.ItemList.Items)
+         foreach (ListviewItem item in ItemList.Items)
          {
             string[] textArray = item.Value.Split(new char[] { ':' }, 2);
             ItemUri uri = ItemUri.Parse(textArray[1]);
@@ -126,7 +126,7 @@ namespace Sitecore.Modules.MediaConversionTool.UI
             }
          }
 
-         ConversionType conversionType = this.TargetGroup.Value.Equals(ConvertToBlob, StringComparison.InvariantCultureIgnoreCase) ? ConversionType.Blob : ConversionType.File;
+         ConversionType conversionType = TargetGroup.Value.Equals(ConvertToBlob, StringComparison.InvariantCultureIgnoreCase) ? ConversionType.Blob : ConversionType.File;
          //Job job = MigrationWorker.CreateJob(itemsToProcess.ToArray(), conversionType);
          var options = new ConversionOptions(conversionType, false);
          Job job = MediaConversionManager.StartConversion(itemsToProcess, options, Context.User);
@@ -145,7 +145,7 @@ namespace Sitecore.Modules.MediaConversionTool.UI
 
       protected void OnRefreshClick()
       {
-         this.Treeview.RefreshRoot();
+         Treeview.RefreshRoot();
       }
 
       protected void ShowDatabases()
@@ -190,7 +190,7 @@ namespace Sitecore.Modules.MediaConversionTool.UI
          {
             control = new ListviewItem();
             control.ID = Control.GetUniqueID("ListItem");
-            Context.ClientPage.AddControl(this.ItemList, control);
+            Context.ClientPage.AddControl(ItemList, control);
             string text = item.Uri.ToString();
             control.Icon = icon;
             control.Header = string.Format("{0}, {1}:{2}", type, item.Database.Name, item.Paths.Path);
@@ -200,7 +200,7 @@ namespace Sitecore.Modules.MediaConversionTool.UI
          {
             Context.ClientPage.ClientResponse.EnableOutput();
          }
-         Context.ClientPage.ClientResponse.Refresh(this.ItemList);
+         Context.ClientPage.ClientResponse.Refresh(ItemList);
       }
 
       private void InitializeControls()
@@ -217,10 +217,10 @@ namespace Sitecore.Modules.MediaConversionTool.UI
             };
 
             button.Click = "ConvertTargetClick(\"" + button.ID + "\")";
-            this.TargetGroup.Controls.Add(button);
+            TargetGroup.Controls.Add(button);
          }
 
-         this.TargetGroup.Value = sources[0].ToLowerInvariant();
+         TargetGroup.Value = sources[0].ToLowerInvariant();
       }
 
       #endregion Private methods

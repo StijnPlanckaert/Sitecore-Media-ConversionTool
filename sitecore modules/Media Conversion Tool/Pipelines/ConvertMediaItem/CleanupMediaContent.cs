@@ -2,14 +2,14 @@
 {
    using System;
    using Sitecore.Configuration;
-   using Sitecore.Data.DataProviders.Sql;
-   using Sitecore.Data.Items;
-   using Sitecore.Data.SqlServer;
-   using Sitecore.Diagnostics;
-   using Sitecore.IO;
-   using Sitecore.Security.Accounts;
-   using Sitecore.StringExtensions;
-   using Sitecore.Threading;
+   using Data.DataProviders.Sql;
+   using Data.Items;
+   using Data.SqlServer;
+   using Diagnostics;
+   using IO;
+   using Security.Accounts;
+   using StringExtensions;
+   using Threading;
 
    public class CleanupMediaContent : ConvertMediaItemProcessor
    {
@@ -20,7 +20,7 @@
       public override void Process(ConvertMediaItemContext context)
       {
          Assert.ArgumentNotNull(context, "context");
-         this.DetermineCleanupOption(context);
+         DetermineCleanupOption(context);
       }
 
       protected virtual void DetermineCleanupOption(ConvertMediaItemContext context)
@@ -31,11 +31,11 @@
          {
             case ConversionType.Blob:
                if (Configuration.Settings.DeleteConvertedFiles && !string.IsNullOrEmpty(reference))
-                  ManagedThreadPool.QueueUserWorkItem(this.RemoveFile, context);
+                  ManagedThreadPool.QueueUserWorkItem(RemoveFile, context);
                break;
             case ConversionType.File:
                if (Configuration.Settings.DeleteConvertedBlobs && !string.IsNullOrEmpty(reference))
-                  ManagedThreadPool.QueueUserWorkItem(this.RemoveBlob, context);
+                  ManagedThreadPool.QueueUserWorkItem(RemoveBlob, context);
                break;
          }
       }
@@ -51,7 +51,7 @@
          {
             using (new UserSwitcher(user))
             {
-               this.CleanFilePathField(item);
+               CleanFilePathField(item);
                using (new LongRunningOperationWatcher(250, "Deleting file '{0}'", new string[] {reference}))
                {
                   FileUtil.Delete(reference);
@@ -73,10 +73,10 @@
          string reference = context.CleanupReference;
          try
          {
-            var sqlDataApi = this.CreateDataApi(item.Database.ConnectionStringName);
+            var sqlDataApi = CreateDataApi(item.Database.ConnectionStringName);
             using (new UserSwitcher(context.User))
             {
-               this.RemoveBlobFromDatabase(item, sqlDataApi, reference);
+               RemoveBlobFromDatabase(item, sqlDataApi, reference);
             }
          }
          catch (Exception exception)
@@ -112,7 +112,7 @@
             //}
             using (new LongRunningOperationWatcher(1000, "Cleaning blob field for item: {0} - {1}", new[] {item.Name, item.Uri.ToString()}))
             {
-               this.CleanBlob(item, reference);
+               CleanBlob(item, reference);
             }
             ////transaction.Complete();
             if (Configuration.Settings.EnableDebugLogging)

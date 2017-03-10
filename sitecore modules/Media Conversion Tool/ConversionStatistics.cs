@@ -1,13 +1,13 @@
 ﻿namespace Sitecore.Modules.MediaConversionTool
 {
    using System.Collections.Generic;
-   using Sitecore.Data;
+   using Data;
 
    public class ConversionStatistics
    {
       public ConversionStatistics()
       {
-         this.Failed = new Dictionary<ItemUri, string>();
+         Failed = new Dictionary<ItemUri, string>();
       }
 
       /// <summary>

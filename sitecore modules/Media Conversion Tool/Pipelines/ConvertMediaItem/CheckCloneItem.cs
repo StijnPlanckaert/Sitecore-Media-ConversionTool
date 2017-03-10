@@ -1,7 +1,7 @@
 ﻿namespace Sitecore.Modules.MediaConversionTool.Pipelines.ConvertMediaItem
 {
-   using Sitecore.Diagnostics;
-   using Sitecore.StringExtensions;
+   using Diagnostics;
+   using StringExtensions;
 
    public class CheckCloneItem : ConvertMediaItemProcessor
    {

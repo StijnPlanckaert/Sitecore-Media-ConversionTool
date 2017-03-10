@@ -1,15 +1,15 @@
 namespace Sitecore.Modules.MediaConversionTool.Controls
 {
     using System.Globalization;
-    using Sitecore.StringExtensions;
+    using StringExtensions;
 
     internal sealed class ProgressBar
     {
         private static readonly string BackgroundProgressBorder =
-            "/sitecore%20modules/Media%20Conversion%20Tool/Controls/Images/progress_border.png";
+            "/sitecore%20modules/Shell/Media%20Conversion%20Tool/UI/Controls/Images/progress_border.png";
 
         private static readonly string BackgroundProgressBar =
-            "/sitecore%20modules/Media%20Conversion%20Tool/Controls/Images/progress_bar.png";
+            "/sitecore%20modules/Shell/Media%20Conversion%20Tool/UI/Controls/Images/progress_bar.png";
 
         private static readonly string Html = @"
            <table style="" border: 0px; background-image: url('{4}'); "" cellpadding=""0"" cellspacing=""0"" >

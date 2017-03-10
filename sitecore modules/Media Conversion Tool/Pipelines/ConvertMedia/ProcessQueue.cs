@@ -2,14 +2,14 @@
 {
    using System.Collections.Generic;
    using System.Linq;
-   using Sitecore.Data;
-   using Sitecore.Data.Items;
-   using Sitecore.Diagnostics;
-   using Sitecore.Jobs;
-   using Sitecore.Modules.MediaConversionTool.Configuration;
-   using Sitecore.Modules.MediaConversionTool.Pipelines.ConvertMediaItem;
-   using Sitecore.Modules.MediaConversionTool.Utils;
-   using Sitecore.StringExtensions;
+   using Data;
+   using Data.Items;
+   using Diagnostics;
+   using Jobs;
+   using Configuration;
+   using ConvertMediaItem;
+   using Utils;
+   using StringExtensions;
 
    public class ProcessQueue : ConvertMediaProcessor
    {
@@ -24,9 +24,9 @@
          {
             if (context.Options.ForceStop)
                break;
-            this.ProcessEntries(candidates, context);
+            ProcessEntries(candidates, context);
          }
-         this.UpdateJobStatus(context);
+         UpdateJobStatus(context);
       }
 
       private void UpdateJobStatus(ConvertMediaContext context)
@@ -48,14 +48,14 @@
                context.Options.ForceStop = true;
             if (context.Options.ForceStop) break;
 
-            foreach (var versionCandidate in this.GetCandidateVersions(entry))
+            foreach (var versionCandidate in GetCandidateVersions(entry))
             {
-               ConvertMediaItemPipeline.Run(this.CreateMediaItemContext(versionCandidate, context));
+               ConvertMediaItemPipeline.Run(CreateMediaItemContext(versionCandidate, context));
             }
 
             if (entry.Deep)
             {
-               this.ProcessEntries(entry.Children, context);
+               ProcessEntries(entry.Children, context);
             }
          }
       }

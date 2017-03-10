@@ -1,6 +1,6 @@
 ﻿namespace Sitecore.Modules.MediaConversionTool.Pipelines.ConvertMedia
 {
-    using Sitecore.Diagnostics;
+    using Diagnostics;
     using Sitecore.Pipelines;
 
     public static class ConvertMediaPipeline

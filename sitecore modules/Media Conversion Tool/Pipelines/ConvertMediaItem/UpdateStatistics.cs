@@ -1,8 +1,8 @@
 ﻿namespace Sitecore.Modules.MediaConversionTool.Pipelines.ConvertMediaItem
 {
-   using Sitecore.Diagnostics;
-   using Sitecore.Jobs;
-   using Sitecore.StringExtensions;
+   using Diagnostics;
+   using Jobs;
+   using StringExtensions;
 
    public class UpdateStatistics : ConvertMediaItemProcessor
    {
@@ -13,9 +13,9 @@
       public override void Process(ConvertMediaItemContext context)
       {
          Assert.ArgumentNotNull(context, "context");
-         this.UpdateContextStatistics(context);
-         this.UpdateJobStatistics(context);
-         this.TraceInfo(context);
+         UpdateContextStatistics(context);
+         UpdateJobStatistics(context);
+         TraceInfo(context);
       }
 
       private void TraceInfo(ConvertMediaItemContext context)

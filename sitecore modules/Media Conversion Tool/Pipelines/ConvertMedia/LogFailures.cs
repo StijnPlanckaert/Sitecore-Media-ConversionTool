@@ -1,9 +1,9 @@
 ﻿namespace Sitecore.Modules.MediaConversionTool.Pipelines.ConvertMedia
 {
    using System.Collections.Generic;
-   using Sitecore.Data;
-   using Sitecore.Diagnostics;
-   using Sitecore.StringExtensions;
+   using Data;
+   using Diagnostics;
+   using StringExtensions;
 
    public class LogFailures : ConvertMediaProcessor
    {

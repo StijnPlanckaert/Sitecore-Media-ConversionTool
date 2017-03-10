@@ -4,8 +4,8 @@
    {
       public ConvertMediaItemResult(ConversionAction action, string message)
       {
-         this.Action = action;
-         this.Message = message;
+         Action = action;
+         Message = message;
       }
 
       public ConversionAction Action { get; set; }

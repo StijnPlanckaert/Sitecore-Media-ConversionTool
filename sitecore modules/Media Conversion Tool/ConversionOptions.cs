@@ -6,8 +6,8 @@
 
       public ConversionOptions(ConversionType conversionType, bool forceStop)
       {
-         this.ConversionType = conversionType;
-         this.ForceStop = forceStop;
+         ConversionType = conversionType;
+         ForceStop = forceStop;
       }
 
       public bool ForceStop { get; set; }

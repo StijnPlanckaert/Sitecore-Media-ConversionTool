@@ -1,10 +1,10 @@
 ﻿namespace Sitecore.Modules.MediaConversionTool.Pipelines.ConvertMedia
 {
    using System.Collections.Generic;
-   using Sitecore.Data;
-   using Sitecore.Data.Items;
-   using Sitecore.Diagnostics;
-   using Sitecore.Modules.MediaConversionTool.Utils;
+   using Data;
+   using Data.Items;
+   using Diagnostics;
+   using Utils;
 
    public class ConversionQueue
    {
@@ -19,7 +19,7 @@
       public ConversionQueue(Database database)
       {
          Assert.ArgumentNotNull(database, "database");
-         this._database = database;
+         _database = database;
       } 
 
       #endregion Constructor

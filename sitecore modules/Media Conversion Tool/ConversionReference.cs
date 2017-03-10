@@ -1,6 +1,6 @@
 ﻿namespace Sitecore.Modules.MediaConversionTool
 {
-    using Sitecore.Data;
+    using Data;
 
     public class ConversionReference
     {
@@ -9,8 +9,8 @@
 
         public ConversionReference(ItemUri uri, bool recursive)
         {
-            this.ItemUri = uri;
-            this.Recursive = recursive;
+            ItemUri = uri;
+            Recursive = recursive;
         }
     }
 }

@@ -1,17 +1,17 @@
 ﻿namespace Sitecore.Modules.MediaConversionTool.Pipelines.ConvertMedia
 {
    using System.Collections.Generic;
-   using Sitecore.Jobs;
+   using Jobs;
    using Sitecore.Pipelines;
-   using Sitecore.Security.Accounts;
+   using Security.Accounts;
 
    public class ConvertMediaContext : PipelineArgs
    {
       public ConvertMediaContext(List<ConversionReference> references)
       {
-         this.References = references;
-         this.Queue = new List<IEnumerable<ConversionCandidate>>();
-         this.Statistics = new ConversionStatistics();
+         References = references;
+         Queue = new List<IEnumerable<ConversionCandidate>>();
+         Statistics = new ConversionStatistics();
       }
 
       #region Properties
